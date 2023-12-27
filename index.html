@@ -1,235 +1,241 @@
 <!DOCTYPE html>
-<!-- {% load static %} -->
+{% load static %}
 <html>
-
-<head>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>youtube下載</title>
-	<link rel="stylesheet" href="index.css">
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4032160237101864"
-		crossorigin="anonymous"></script>
-</head>
-
-<body>
-	<div class="maindiv">
-		<div class="navigationbar">
-			<img src="logo.png" class="logo">
-		</div>
-
-		<div class="main">
-			<form method="post" action="">
-				<div class="maintitle">快速下載YouTube影音</div>
-				<div class="searchdiv">
-					<!-- 請輸入youtube網址：<input type="text" name="youtubeUrl" value="{{ youtubeUrl }}"> -->
-					<input type="text" class="search" name="youtubeUrl" value="{{ youtubeUrl }}">
-					<button type="submit" class="startbutton" name="btnValue" value="change_url">開始➔</button>
-					{% csrf_token %}
-				</div>
-				<div class="secondary">2022電子紙系列講座 E ink Spactra<sup>TM</sup> 3100 Plus</div>
-				<div class="mainmain">
-					<div class="addiv">
-						<div class="ad">廣告一</div>
-						<div class="ad">廣告二</div>
-					</div>
-					<div class="downloaddiv">
-						<table class="table">
-							<tr>
-								<td class="tabletitle">Video</td>
-								<td class="tabletitle2">Mp3</td>
-							</tr>
-							<tr>
-								<td class="tablesecondary">Resolution</td>
-								<td class="tablesecondary">Download</td>
-							</tr>
-							{% for x in value %}
-							<tr>
-								<td class="downloadtabletd1">{{ x.name }}</td>
-								<td class="downloadtabletd2">
-									<button class="downloadbutton" name="btnValue" value="{{ x.value }}" onclick="showModal(this.value, event)">
-										<img src="download.png" class="icon">下載
-									</button>
-								</td>
-							</tr>
-							{% endfor %}
-						</table>
-					</div>
-				</div>
-			</form>
-		</div>
-
-		<div class="hintdiv">
-			<div class="hinttext">
-				<b>提示: </b>插入 ko 到網址列上級可以最快的速度下載到影片或mp3
+	<head>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>youtube下載</title>
+		<link rel="stylesheet" href="index.css">
+		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4032160237101864" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<div class="maindiv">
+			<div class="navigationbar">
+				<img src="logo.png" class="logo">
 			</div>
-			<img src="hint.png" class="hintimage">
-		</div>
 
-		<div class="intro">
-			<ol class="introol">
-				<div class="introtitle">說明</div>
-				<li class="introli">按名稱搜索或直接貼要轉貼的視頻的連結</li>
-				<li class="introli">點擊"開始"按鈕開始轉換</li>
-				<li class="introli">選擇要下載的視頻/音頻格式，之後點擊"下載"鍵</li>
-			</ol>
+			<div class="main">
+				<form method="post" action="">
+					<div class="maintitle">快速下載YouTube影音</div>
+					<div class="searchdiv">
+						<!-- 請輸入youtube網址：<input type="text" name="youtubeUrl" value="{{ youtubeUrl }}"> -->
+						<input type="text" class="search" name="youtubeUrl" value="{{ youtubeUrl }}">
+						<button type="submit" class="startbutton" name="btnValue" value="change_url">開始➔</button>
+						{% csrf_token %}
+					</div>
+					<div class="secondary">2022電子紙系列講座 E ink Spactra<sup>TM</sup> 3100 Plus</div>
+					<div class="mainmain">
+						<div class="addiv">
+							<div class="ad"><img src="ad/ad1.png" class="adimage"></div>
+							<div class="ad"><img src="ad/ad2.png" class="adimage"></div>
+						</div>
+						<div class="downloaddiv">
+							<table class="table">
+								<tr>
+									<td class="tabletitle downloadselect" id="video">Video</td>
+									<td class="tabletitle2" id="mp3">Mp3</td>
+								</tr>
+								<tr>
+									<td class="tablesecondary">Resolution</td>
+									<td class="tablesecondary">Download</td>
+								</tr>
+								{% for x in value %}
+								<tr>
+									<td class="downloadtabletd1">{{ x.name }}</td>
+									<td class="downloadtabletd2">
+										<button class="downloadbutton" name="btnValue" value="{{ x.value }}" onclick="showModal(this.value, event)">
+											<img src="download.png" class="icon">下載
+										</button>
+									</td>
+								</tr>
+								{% endfor %}
+							</table>
+						</div>
+					</div>
+				</form>
+			</div>
 
-			<ul class="introul">
-				<div class="introtitle">特徵</div>
-				<li class="introli">無限下載、永遠免費</li>
-				<li class="introli">無註冊要求</li>
-				<li class="introli">支持所有格式的下載</li>
-			</ul>
-		</div>
+			<div class="hintdiv">
+				<div class="hinttext">
+					<b>提示: </b>插入 ko 到網址列上級可以最快的速度下載到影片或mp3
+				</div>
+				<img src="hint.png" class="hintimage">
+			</div>
 
-		<div class="footerdiv">
-			<div class="footer">&copy;2023 youtubeko.com</div>
+			<div class="intro">
+				<ol class="introol">
+					<div class="introtitle">說明</div>
+					<li class="introli">按名稱搜索或直接貼要轉貼的視頻的連結</li>
+					<li class="introli">點擊"開始"按鈕開始轉換</li>
+					<li class="introli">選擇要下載的視頻/音頻格式，之後點擊"下載"鍵</li>
+				</ol>
 
-			<div class="footerfunction">
-				<a href="#" class="footerfunctionbutton">關於</a>
-				<a href="#" class="footerfunctionbutton">聯繫</a>
-				<a href="#" class="footerfunctionbutton">服務條款</a>
-				<a href="#" class="footerfunctionbutton">隱私政策</a>
+				<ul class="introul">
+					<div class="introtitle">特徵</div>
+					<li class="introli">無限下載、永遠免費</li>
+					<li class="introli">無註冊要求</li>
+					<li class="introli">支持所有格式的下載</li>
+				</ul>
+			</div>
+
+			<div class="footerdiv">
+				<div class="footer">&copy;2023 youtubeko.com</div>
+
+				<div class="footerfunction">
+					<a href="#" class="footerfunctionbutton">關於</a>
+					<a href="#" class="footerfunctionbutton">聯繫</a>
+					<a href="#" class="footerfunctionbutton">服務條款</a>
+					<a href="#" class="footerfunctionbutton">隱私政策</a>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<!-- youtube下載廣告 -->
-	<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4032160237101864" data-ad-slot="7807645432"
-		data-ad-format="auto" data-full-width-responsive="true"></ins>
-	<!-- <script>
+		<!-- youtube下載廣告 -->
+		<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4032160237101864" data-ad-slot="7807645432"
+			data-ad-format="auto" data-full-width-responsive="true"></ins>
+		<!-- <script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+			</script> -->
+		<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4032160237101864"
+			crossorigin="anonymous"></script> -->
+
+		<!-- 水平 -->
+		<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4032160237101864" data-ad-slot="5445205972"
+			data-ad-format="auto" data-full-width-responsive="true"></ins>
+		<script>
 			(adsbygoogle = window.adsbygoogle || []).push({});
-		</script> -->
-	<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4032160237101864"
-		crossorigin="anonymous"></script> -->
+		</script>
 
-	<!-- 水平 -->
-	<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4032160237101864" data-ad-slot="5445205972"
-		data-ad-format="auto" data-full-width-responsive="true"></ins>
-	<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-	</script>
-
-	<!-- 彈跳視窗 -->
-	<form method="post" action="">
-		{% csrf_token %}
-		<div id="myModal" class="modal">
-			<div class="modal-content">
-				<h3>下載進度</h3>
-				<div class="progress-bar">
-					<div class="bar"></div>
+		<!-- 彈跳視窗 -->
+		<form method="post" action="">
+			{% csrf_token %}
+			<div id="myModal" class="modal">
+				<div class="modal-content">
+					<h3>下載進度</h3>
+					<div class="progress-bar">
+						<div class="bar"></div>
+					</div>
+					<button class="download-btn" name="btnValue" value="download_please"
+						onclick="truedownload()">下載</button>
 				</div>
-				<button class="download-btn" name="btnValue" value="download_please"
-					onclick="truedownload()">下載</button>
 			</div>
-		</div>
-	</form>
+		</form>
 
-	<script>
-		function truedownload() {
-			var btnValue = "download_please";
-			// 使用 AJAX 或其他方法將數據傳送給後端
-			// 這裡只是一個示例，您需要根據您的後端實現進行相應的修改
-			// 使用 FormData 對象來發送表單數據
-			var formData = new FormData();
-			formData.append('btnValue', btnValue);
-			fetch("{{ currentUrl }}", {
-				method: 'POST',
-				body: formData,
-				headers: {
-					'X-CSRFToken': getCookie('csrftoken')  // 使用 JavaScript 函數取得 CSRF 令牌的值
-				}
-			})
-				.then(response => response.json())
-				.then(data => {
-					// 在這裡處理後端返回的數據
-					console.log(data);
+		<script>
+			document.getElementById("mp3").onclick=function(){
+				document.getElementById("mp3").classList.add("downloadselect")
+				document.getElementById("video").classList.remove("downloadselect")
+			}
+
+			document.getElementById("video").onclick=function(){
+				document.getElementById("video").classList.add("downloadselect")
+				document.getElementById("mp3").classList.remove("downloadselect")
+			}
+
+			function truedownload() {
+				var btnValue = "download_please";
+				// 使用 AJAX 或其他方法將數據傳送給後端
+				// 這裡只是一個示例，您需要根據您的後端實現進行相應的修改
+				// 使用 FormData 對象來發送表單數據
+				var formData = new FormData();
+				formData.append('btnValue', btnValue);
+				fetch("{{ currentUrl }}", {
+					method: 'POST',
+					body: formData,
+					headers: {
+						'X-CSRFToken': getCookie('csrftoken')  // 使用 JavaScript 函數取得 CSRF 令牌的值
+					}
 				})
-				.catch(error => {
-					console.error('Error:', error);
-				});
-		}
-
-		function showModal(value, event) {
-			var modal = document.getElementById("myModal");
-			modal.style.display = "block";
-			startDownload(value);
-			//checkProgress();  // 在点击按钮后立即开始检查进度
-		}
-
-		function startDownload(value) {
-			event.preventDefault();  // 阻止表单的默认提交行为
-			var progressBar = document.querySelector(".bar");
-			var downloadButton = document.querySelector(".download-btn");
-
-			var width = 0;
-			var interval;
-
-			// 使用 AJAX 或其他方法将数据发送给后端
-			// 这里只是一个示例，您需要根据您的后端实现进行相应的修改
-			// 使用 FormData 对象来发送表单数据
-			var formData = new FormData();
-			formData.append('btnValue', value);
-
-			fetch("{{ currentUrl }}", {
-				method: 'POST',
-				body: formData,
-				headers: {
-					'X-CSRFToken': getCookie('csrftoken')  // 使用 JavaScript 函数获取 CSRF 令牌的值
-				}
-			})
-				.then(response => response.json())
-				.then(data => {
-					// 在这里处理后端返回的数据
-					console.log(data);
-				})
-				.catch(error => {
-					console.error('Error:', error);
-				});
-
-			interval = setInterval(checkProgress, 1000);
-			function checkProgress(event) {
-				fetch("{% url 'progress' %}")
 					.then(response => response.json())
 					.then(data => {
-						var progress = parseInt(data.progress);
-						console.log('Progress:', progress);
-
-						if (progress < 100) {
-							width = progress;
-							progressBar.style.width = width + "%";
-						} else {
-							clearInterval(interval);
-							console.log('Progress CLOSE:');
-							width = progress;
-							progressBar.style.width = width + "%";
-							downloadButton.style.display = "block";
-						}
+						// 在這裡處理後端返回的數據
+						console.log(data);
 					})
 					.catch(error => {
 						console.error('Error:', error);
 					});
 			}
-		}
 
-		//checkProgress();
+			function showModal(value, event) {
+				var modal = document.getElementById("myModal");
+				modal.style.display = "block";
+				startDownload(value);
+				//checkProgress();  // 在点击按钮后立即开始检查进度
+			}
 
-		// 取得 CSRF 令牌的值
-		function getCookie(name) {
-			var cookieValue = null;
-			if (document.cookie && document.cookie !== '') {
-				var cookies = document.cookie.split(';');
-				for (var i = 0; i < cookies.length; i++) {
-					var cookie = cookies[i].trim();
-					if (cookie.substring(0, name.length + 1) === (name + '=')) {
-						cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-						break;
+			function startDownload(value) {
+				event.preventDefault();  // 阻止表单的默认提交行为
+				var progressBar = document.querySelector(".bar");
+				var downloadButton = document.querySelector(".download-btn");
+
+				var width = 0;
+				var interval;
+
+				// 使用 AJAX 或其他方法将数据发送给后端
+				// 这里只是一个示例，您需要根据您的后端实现进行相应的修改
+				// 使用 FormData 对象来发送表单数据
+				var formData = new FormData();
+				formData.append('btnValue', value);
+
+				fetch("{{ currentUrl }}", {
+					method: 'POST',
+					body: formData,
+					headers: {
+						'X-CSRFToken': getCookie('csrftoken')  // 使用 JavaScript 函数获取 CSRF 令牌的值
 					}
+				})
+					.then(response => response.json())
+					.then(data => {
+						// 在这里处理后端返回的数据
+						console.log(data);
+					})
+					.catch(error => {
+						console.error('Error:', error);
+					});
+
+				interval = setInterval(checkProgress, 1000);
+				function checkProgress(event) {
+					fetch("{% url 'progress' %}")
+						.then(response => response.json())
+						.then(data => {
+							var progress = parseInt(data.progress);
+							console.log('Progress:', progress);
+
+							if (progress < 100) {
+								width = progress;
+								progressBar.style.width = width + "%";
+							} else {
+								clearInterval(interval);
+								console.log('Progress CLOSE:');
+								width = progress;
+								progressBar.style.width = width + "%";
+								downloadButton.style.display = "block";
+							}
+						})
+						.catch(error => {
+							console.error('Error:', error);
+						});
 				}
 			}
-			return cookieValue;
-		}
-	</script>
-</body>
 
+			//checkProgress();
+
+			// 取得 CSRF 令牌的值
+			function getCookie(name) {
+				var cookieValue = null;
+				if (document.cookie && document.cookie !== '') {
+					var cookies = document.cookie.split(';');
+					for (var i = 0; i < cookies.length; i++) {
+						var cookie = cookies[i].trim();
+						if (cookie.substring(0, name.length + 1) === (name + '=')) {
+							cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+							break;
+						}
+					}
+				}
+				return cookieValue;
+			}
+		</script>
+	</body>
 </html>
